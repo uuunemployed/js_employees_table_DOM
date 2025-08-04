@@ -188,7 +188,9 @@ button.addEventListener('click', (e) => {
       Number(objectInp.age) < 18 ||
       Number(objectInp) > 90
     ) {
-      isError = false;
+      pushNotification('Title of Error message', 'error');
+
+      return;
     } else {
       isError = true;
 
@@ -200,8 +202,6 @@ button.addEventListener('click', (e) => {
   }
 
   if (isError) {
-    pushNotification('Title of Error message', 'error');
-  } else {
     pushNotification('Title of Success message', 'success');
   }
 
