@@ -178,20 +178,31 @@ button.addEventListener('click', (e) => {
     age: inpAge.value,
     salary: `$${inpSalary.value}`,
   };
+  let isError = false;
 
   const tr = document.createElement('tr');
 
   for (const key in objectInp) {
-    if (objectInp.name < 4 || objectInp.age < 18 || objectInp > 90) {
-      pushNotification('Title of Error message', 'error');
+    if (
+      objectInp.name.length < 4 ||
+      Number(objectInp.age) < 18 ||
+      Number(objectInp) > 90
+    ) {
+      isError = false;
     } else {
-      pushNotification('Title of Success message', 'success');
+      isError = true;
 
       const td = document.createElement('td');
 
       td.textContent = objectInp[key];
       tr.append(td);
     }
+  }
+
+  if (isError) {
+    pushNotification('Title of Error message', 'error');
+  } else {
+    pushNotification('Title of Success message', 'success');
   }
 
   tbody.append(tr);
